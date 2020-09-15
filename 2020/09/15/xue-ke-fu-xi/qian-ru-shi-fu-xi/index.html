@@ -1,0 +1,591 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>嵌入式复习大纲 | 用技术点亮生活</title><meta name="description" content="第一章嵌入式系统概述 嵌入式系统的定义：嵌入到对象体系中的专用计算机应用系统 嵌入式系统的特点： 嵌入性 内含计算机 专用性   嵌入式系统的相关产品  嵌入式操作系统相关概念 RTOS：实时操作系统（RTSO）是一段在嵌入式系统启动后首先执行的背景程序，用户的应用程序是运行在RTOS之上的各个任务，RTOS根据各个任务的要求，进行资源管理、消息管理、任务调度以及任务处理等工作 调度：调度是内核的"><meta name="keywords" content="大二下册,嵌入式"><meta name="author" content="ACist"><meta name="copyright" content="ACist"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://achttp.github.io/2020/09/15/xue-ke-fu-xi/qian-ru-shi-fu-xi/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="嵌入式复习大纲"><meta property="og:url" content="https://achttp.github.io/2020/09/15/xue-ke-fu-xi/qian-ru-shi-fu-xi/"><meta property="og:site_name" content="用技术点亮生活"><meta property="og:description" content="第一章嵌入式系统概述 嵌入式系统的定义：嵌入到对象体系中的专用计算机应用系统 嵌入式系统的特点： 嵌入性 内含计算机 专用性   嵌入式系统的相关产品  嵌入式操作系统相关概念 RTOS：实时操作系统（RTSO）是一段在嵌入式系统启动后首先执行的背景程序，用户的应用程序是运行在RTOS之上的各个任务，RTOS根据各个任务的要求，进行资源管理、消息管理、任务调度以及任务处理等工作 调度：调度是内核的"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2020-09-15T09:39:42.591Z"><meta property="article:modified_time" content="2020-09-15T09:45:52.884Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-09-15 17:45:52'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.0.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">7</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">第一章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">嵌入式系统概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.</span> <span class="toc-text">嵌入式操作系统相关概念</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="toc-number">2.</span> <span class="toc-text">第二章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ARM%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">ARM简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ARM7TDMI"><span class="toc-number">2.2.</span> <span class="toc-text">ARM7TDMI</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0"><span class="toc-number">2.2.1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARM%E5%A4%84%E7%90%86%E5%99%A8%E6%94%AF%E6%8C%81"><span class="toc-number">2.2.2.</span> <span class="toc-text">ARM处理器支持</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="toc-number">2.2.3.</span> <span class="toc-text">三级流水线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARM%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-number">2.2.4.</span> <span class="toc-text">ARM处理器的状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARM%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.2.5.</span> <span class="toc-text">ARM处理器的模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARM%E5%86%85%E9%83%A8%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">2.2.6.</span> <span class="toc-text">ARM内部寄存器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Thumb%E7%8A%B6%E6%80%81%E4%B8%8B%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">2.2.7.</span> <span class="toc-text">Thumb状态下的寄存器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARM%E4%BD%93%E7%B3%BB%E7%9A%84%E5%BC%82%E5%B8%B8%E3%80%81%E4%B8%AD%E6%96%AD%E5%8F%8A%E5%85%B6%E5%90%91%E9%87%8F%E8%A1%A8"><span class="toc-number">2.2.8.</span> <span class="toc-text">ARM体系的异常、中断及其向量表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARM%E4%BD%93%E7%B3%BB%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">2.2.9.</span> <span class="toc-text">ARM体系的存储结构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">第三章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ARM%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">ARM处理器的寻址方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ARM%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="toc-number">3.2.</span> <span class="toc-text">ARM指令集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ARM%E5%AD%98%E5%82%A8%E5%99%A8%E8%AE%BF%E9%97%AE%E6%8C%87%E4%BB%A4"><span class="toc-number">3.3.</span> <span class="toc-text">ARM存储器访问指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0"><span class="toc-number">4.</span> <span class="toc-text">第四章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E9%87%8D%E6%98%A0%E5%B0%84"><span class="toc-number">4.1.</span> <span class="toc-text">存储器重映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E4%BB%A3%E7%A0%81"><span class="toc-number">4.2.</span> <span class="toc-text">系统启动代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9D%97"><span class="toc-number">4.3.</span> <span class="toc-text">系统控制模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%92%9F"><span class="toc-number">4.3.1.</span> <span class="toc-text">系统时钟</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E4%BD%8D"><span class="toc-number">4.3.2.</span> <span class="toc-text">复位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E5%AD%98%E5%82%A8%E5%99%A8%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88EMC%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">外部存储器控制器（EMC）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E8%84%9A%E8%BF%9E%E6%8E%A5%E6%A8%A1%E5%9D%97"><span class="toc-number">4.5.</span> <span class="toc-text">引脚连接模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GPIO"><span class="toc-number">4.5.1.</span> <span class="toc-text">GPIO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GPIO%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.5.2.</span> <span class="toc-text">GPIO应用示例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0"><span class="toc-number">5.</span> <span class="toc-text">第六章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="toc-number">5.1.</span> <span class="toc-text">信号量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF"><span class="toc-number">5.2.</span> <span class="toc-text">消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%AE%E7%AE%B1"><span class="toc-number">5.3.</span> <span class="toc-text">邮箱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-number">5.4.</span> <span class="toc-text">消息队列</span></a></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">用技术点亮生活</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">嵌入式复习大纲</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-15T09:39:42.591Z" title="发表于 2020-09-15 17:39:42">2020-09-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-09-15T09:45:52.884Z" title="更新于 2020-09-15 17:45:52">2020-09-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E7%A7%91%E5%A4%8D%E4%B9%A0/">学科复习</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h3 id="嵌入式系统概述"><a href="#嵌入式系统概述" class="headerlink" title="嵌入式系统概述"></a>嵌入式系统概述</h3><ul>
+<li>嵌入式系统的定义：嵌入到对象体系中的专用计算机应用系统</li>
+<li>嵌入式系统的特点：<ul>
+<li>嵌入性</li>
+<li>内含计算机</li>
+<li>专用性</li>
+</ul>
+</li>
+<li>嵌入式系统的相关产品</li>
+</ul>
+<h3 id="嵌入式操作系统相关概念"><a href="#嵌入式操作系统相关概念" class="headerlink" title="嵌入式操作系统相关概念"></a>嵌入式操作系统相关概念</h3><ul>
+<li>RTOS：实时操作系统（RTSO）是一段在嵌入式系统启动后首先执行的背景程序，用户的应用程序是运行在RTOS之上的各个任务，RTOS根据各个任务的要求，进行资源管理、消息管理、任务调度以及任务处理等工作</li>
+<li>调度：调度是内核的主要职责之一，调度是用来决定轮到那个任务运行的</li>
+<li>非占先式内核和占先式内核<ul>
+<li>非占先式内核要求每个任务自我放弃CPU的所有权</li>
+<li>占先式内核是最高级任务一旦就绪，总能获得CPU的所有权</li>
+</ul>
+</li>
+<li>常见的嵌入式实时操作系统<ul>
+<li>μClinux<ul>
+<li>开源、实时</li>
+</ul>
+</li>
+<li>Windows CE<ul>
+<li>开源、实时</li>
+</ul>
+</li>
+<li>VxWorks<ul>
+<li>不开源、实时</li>
+</ul>
+</li>
+<li>μC/Os-Ⅱ<ul>
+<li>开源、实时</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><h3 id="ARM简介"><a href="#ARM简介" class="headerlink" title="ARM简介"></a>ARM简介</h3><ul>
+<li>ARM公司是一家知识产权供应商，不制造芯片且不向终端用户出售芯片</li>
+<li>精简指令集RISC和复杂指令集CISC<ul>
+<li>ARM内核采用精简指令集RISC</li>
+<li>RISC的指令集和相关译码机制比CISC要简单的多</li>
+<li>其目标就是设计一套能在高时钟频率下单周期执行，简单而有效的指令集</li>
+<li>RISC的设计重点在于降低处理器中指令执行部件的硬件复杂度</li>
+</ul>
+</li>
+</ul>
+<h3 id="ARM7TDMI"><a href="#ARM7TDMI" class="headerlink" title="ARM7TDMI"></a>ARM7TDMI</h3><h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><p>M：64位乘法指令</p>
+<p>D：支持片上调试</p>
+<p>T：高密度16位Thumb指令集拓展</p>
+<p>I：Embedded ICE 硬件仿真功能模块</p>
+<p>ARM使用冯.诺依曼结构，指令和数据公用一条32位总线，因此只有装载和存储和交换指令可以对存储器中的数据进行访问</p>
+<ul>
+<li>冯.诺依曼结构</li>
+<li>哈佛结构</li>
+</ul>
+<h4 id="ARM处理器支持"><a href="#ARM处理器支持" class="headerlink" title="ARM处理器支持"></a>ARM处理器支持</h4><ul>
+<li>8位字节</li>
+<li>16位半字</li>
+<li>32位字</li>
+<li>一个字等于四个字节，一个半字等于两个字节</li>
+<li>ARM指令长度是一个字，Thumb指令是一个半字</li>
+<li>字存储–字对齐；半字存储–半字对齐</li>
+</ul>
+<h4 id="三级流水线"><a href="#三级流水线" class="headerlink" title="三级流水线"></a>三级流水线</h4><ul>
+<li>三个阶段<ul>
+<li>取指</li>
+<li>译码</li>
+<li>执行</li>
+</ul>
+</li>
+<li>单片机上，PC总是指向正在执行的指令</li>
+<li>ARM处理器，PC总是指向正在取指的位置也就是第三条指令，或者说当前执行的指令地址再加两条指令的地址<ul>
+<li>ARM状态<ul>
+<li>PC=当前指令执行位置+8字节</li>
+</ul>
+</li>
+<li>Thumb状态<ul>
+<li>PC=当前指令执行位置+4字节</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>尽量少的使用跳转指令可以提高程序的执行效率</li>
+</ul>
+<h4 id="ARM处理器的状态"><a href="#ARM处理器的状态" class="headerlink" title="ARM处理器的状态"></a>ARM处理器的状态</h4><ul>
+<li>ARM指令集<ul>
+<li>32位字长，拥有最完整的功能</li>
+</ul>
+</li>
+<li>Thumb指令集<ul>
+<li>16位半字，能实现ARM指令集的大部分功能</li>
+</ul>
+</li>
+<li>ARM状态采用ARM指令集，Thumb状态采用Thumb指令集<ul>
+<li>系统通电默认ARM状态</li>
+<li>无论处理器处于任何一种状态，都不能混用两种指令集</li>
+<li>BX指令是在程序跳转的时候同时进行状态切换</li>
+</ul>
+</li>
+</ul>
+<h4 id="ARM处理器的模式"><a href="#ARM处理器的模式" class="headerlink" title="ARM处理器的模式"></a>ARM处理器的模式</h4><ul>
+<li><p>七种处理模式</p>
+</li>
+<li><p>| 处理器模式    | 说明                            | 备注                                               |<br>| ——————- | ———————————————- | ————————————————————————— |<br>| 用户    (usr) | 正常程序工作模式                | 不能直接切换到其它模式                             |<br>| 系统    (sys) | 用于支持操作系统的特权任务等    | 与用户模式类似，但具有可以直接切换到其它模式等特权 |<br>| 快中断  (fiq) | 支持高速数据传输及通道处理      | FIQ异常响应时进入此模式                            |<br>| 中断    (irq) | 用于通用中断处理                | IRQ异常响应时进入此模式                            |<br>| 管理    (svc) | 操作系统保护代码                | 系统复位和软件中断响应时进入此模式                 |<br>| 中止    (abt) | 用于支持虚拟内存和/或存储器保护 | 在ARM7TDMI没有大用处                               |<br>| 未定义  (und) | 支持硬件协处理器的软件仿真      | 未定义指令异常响应时进入此模式                     |</p>
+</li>
+<li><p>特权模式</p>
+<ul>
+<li>系统模式</li>
+<li>异常模式<ul>
+<li>中断</li>
+<li>快中断</li>
+<li>管理<ul>
+<li>处理器复位、软件中断响应后进入，操作系统通常处于管理模式</li>
+</ul>
+</li>
+<li>中止</li>
+<li>未定义</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>只有在特权模式才能对当前程序状态寄存器CPSR的所有控制位直接进行读写访问，而非特权模式只允许对CPSR的控制位进行间接的访问</p>
+</li>
+<li><p>每一种异常模式都有对应的寄存器，供相应的异常处理程序使用，从而可保证处理器在进入异常模式时，用户模式下的寄存器不会被破坏</p>
+</li>
+<li><p>用户模式和系统模式不能通过异常进入，也就是说想进入系统模式，必须通过修改CPSR才能实现</p>
+</li>
+</ul>
+<h4 id="ARM内部寄存器"><a href="#ARM内部寄存器" class="headerlink" title="ARM内部寄存器"></a>ARM内部寄存器</h4><ul>
+<li>ARM内部有37个用户可以访问的32位寄存器，其中有6个32位宽的状态寄存器目前只使用了其中12位<ul>
+<li>31个通用寄存器</li>
+<li>6个状态寄存器</li>
+<li><img src= "/img/loading.gif" data-lazy-src="http://pic.acist.xn--ses554g/Chevereto-Free-master/images/2020/09/15/20200915174449.png" alt="shit"></li>
+</ul>
+</li>
+<li>堆栈指针R13（SP）<ul>
+<li>堆栈操作通常发生在子程序调用、异常发生或者程序运行过程中寄存器数量不够的时候。前两者是把用到的寄存器临时存储后面再重装，而后者是需要的时候弹出来操作</li>
+<li>保存堆栈的出入口处地址</li>
+<li>4中堆栈方式<ul>
+<li>满递增</li>
+<li>空递增</li>
+<li>满递减</li>
+<li>空递减</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>链接寄存器R14（LR）<ul>
+<li>每种异常模式都有专门的R14寄存器用于保护子程序的返回地址</li>
+<li>异常处理程序的完成的返回是通过将LR的值写出PC，同时从SPSR寄存器中恢复CPSR来实现的</li>
+</ul>
+</li>
+<li>程序计数器R15（PC）<ul>
+<li>总是指向正在取指的指令</li>
+</ul>
+</li>
+<li>程序状态寄存器（CPSR）<ul>
+<li>所有模式共享一个CPSR</li>
+<li><img src= "/img/loading.gif" data-lazy-src="http://pic.acist.xn--ses554g/Chevereto-Free-master/images/2020/09/15/20200915174449.png" alt="image-20200915143342407"></li>
+<li><img src= "/img/loading.gif" data-lazy-src="http://pic.acist.xn--ses554g/Chevereto-Free-master/images/2020/09/15/20200915174449.png" alt=""></li>
+</ul>
+</li>
+<li>程序状态保存寄存器（SPSR）<ul>
+<li>用户模式和系统模式不是一场中断，所以他们没有SPSR</li>
+<li>通过程序直接改写CPSR，CPSR是不会被保存到SPSR中去的，因此只有发生异常或者中断的时候才会备份到SPSR中去</li>
+</ul>
+</li>
+</ul>
+<h4 id="Thumb状态下的寄存器"><a href="#Thumb状态下的寄存器" class="headerlink" title="Thumb状态下的寄存器"></a>Thumb状态下的寄存器</h4><ul>
+<li>由于Thumb指令集不包含MSR和MRS指令，如果用户要修改CPSR中的任何标志位都需要回到ARM模式。通过BX和BLX指令来改变指令集模式，而且当完成复位或者进入异常模式将会自动切换到ARM模式</li>
+<li>所有异常处理都是在ARM状态下执行的</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="http://pic.acist.xn--ses554g/Chevereto-Free-master/images/2020/09/15/20200915174449.png" alt="image-20200915143133981"></p>
+<h4 id="ARM体系的异常、中断及其向量表"><a href="#ARM体系的异常、中断及其向量表" class="headerlink" title="ARM体系的异常、中断及其向量表"></a>ARM体系的异常、中断及其向量表</h4><ul>
+<li><p>异常向量表</p>
+<ul>
+<li><img src= "/img/loading.gif" data-lazy-src="http://pic.acist.xn--ses554g/Chevereto-Free-master/images/2020/09/15/20200915174449.png" alt="img"></li>
+</ul>
+</li>
+<li><p>异常优先级</p>
+<ul>
+<li><img src= "/img/loading.gif" data-lazy-src="http://pic.acist.xn--ses554g/Chevereto-Free-master/images/2020/09/15/20200915174449.png" alt="image-20200915144257014"></li>
+</ul>
+</li>
+</ul>
+<h4 id="ARM体系的存储结构"><a href="#ARM体系的存储结构" class="headerlink" title="ARM体系的存储结构"></a>ARM体系的存储结构</h4><ul>
+<li>小端格式</li>
+<li>大端格式</li>
+<li><img src= "/img/loading.gif" data-lazy-src="http://pic.acist.xn--ses554g/Chevereto-Free-master/images/2020/09/15/202009151744498389223e0b3f1a91.png" alt="image-20200915151601925"></li>
+<li>注意除了考虑单个字，还要考虑多个字的情况，详情见书P49页</li>
+<li></li>
+</ul>
+<h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><h3 id="ARM处理器的寻址方式"><a href="#ARM处理器的寻址方式" class="headerlink" title="ARM处理器的寻址方式"></a>ARM处理器的寻址方式</h3><ul>
+<li><p>寄存器寻址</p>
+<ul>
+<li><p>操作数的值存储在寄存器中，指令的地址码指出的是寄存器的编号，指令执行时可以直接取出寄存器的值来操作</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV R1,R2;<span class="comment">//R2存储到R1中</span></span><br><span class="line">SUB R0,R1,R2;<span class="comment">//将R1-R2的值存储在R0中</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>立即寻址</p>
+<ul>
+<li><p>操作码字段后面的地址码部分即是操作数本身，也就是说数据包含在指令当中，取出指令后可以直接使用，这样的数也被称为立即数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SUBS R0,R0,#<span class="number">1</span>;<span class="comment">//R0-1,并且存储在R0中，并且影响标志位</span></span><br><span class="line">MOV R0,#<span class="number">0xFF000</span>;<span class="comment">//将立即数0xFF00 装入R0</span></span><br></pre></td></tr></table></figure>
+<p>前缀<strong>#</strong>表示立即数</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>寄存器移位寻址</p>
+<ul>
+<li><p>ARM指令集特有的寻址方式</p>
+</li>
+<li><p>当第二个操作数是寄存器移位方式时，第二个寄存器操作数在于第一个操作数结合之前，选择进行移位操作。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV R0,R2,LSL # <span class="number">3</span>;<span class="comment">// R0=R2*8</span></span><br><span class="line">ANDS R1,R1,R2,LSL R3;<span class="comment">//R1=R1 AND (R2*2^&#123;R3&#125;) </span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>寄存器间接寻址</p>
+<ul>
+<li><p>寻址指令中的地址码给出的是一个通用寄存器的编号，所需的操作数保存在寄存器指定地址的存储单元中，即寄存器为操作数的地址指针</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LDR R1,[R2]; <span class="comment">//    将R2指向的存储单元的数据读出，保存在R2中</span></span><br><span class="line">SWP R1,R1,[R2]; <span class="comment">//将寄存器R1的值和R2指定的存储单元进行</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>基址寻址</p>
+<ul>
+<li><p>将基址寄存器的内容与指令中给出的偏移量相加，形成操作数的有效地址，基址寻址用于访问基址附近的存储单元，常用于查表、数组操作、功能部件寄存器访问等</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LDR R2,[R3,#<span class="number">0x0C</span>]; <span class="comment">// R2=R3+#0x0C</span></span><br><span class="line">STR R1,[R0,#<span class="number">-4</span>]!; <span class="comment">// R0-4=R1</span></span><br><span class="line">LDR R1,[R0,R3,LSL,#<span class="number">1</span>]; <span class="comment">// R1=R0+R3*2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>多寄存器寻址</p>
+<ul>
+<li><p>一次可以传输过个寄存器，允许一条指令传送16个寄存器的任何子集或者所有寄存器</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LDMIA R1!,&#123;R2-R7,R12&#125;;<span class="comment">//将R1的数据读到R2-R7,R12中</span></span><br><span class="line">STMIA R0!,&#123;R2-R7,R12&#125;;<span class="comment">//将R2-R7，R12的数据自动保存到R0当中，R0自动加一</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>堆栈寻址</p>
+</li>
+<li><p>相对寻址</p>
+</li>
+</ul>
+<h3 id="ARM指令集"><a href="#ARM指令集" class="headerlink" title="ARM指令集"></a>ARM指令集</h3><ul>
+<li>ASR #n 算术右移n位</li>
+<li>LSL  #n 逻辑左移n位</li>
+<li>LSR #n 逻辑右移n位</li>
+<li>ROR #n 循环右移n位</li>
+<li>RRX 带扩展的循环右移1位</li>
+</ul>
+<h3 id="ARM存储器访问指令"><a href="#ARM存储器访问指令" class="headerlink" title="ARM存储器访问指令"></a>ARM存储器访问指令</h3><ul>
+<li>LDR  {cond} {T} Rd，&lt;地址&gt; 加载指定地址上的数据放到Rd中</li>
+<li>STR  {cond} {T} Rd，&lt;地址&gt;存储数据到指定地址，数据在Rd中</li>
+<li>LDR {cond} B{T} Rd，&lt;地址&gt;加载字节数据，放入Rd中，即Rd最低字节有效</li>
+<li>STR {cond} B{T} Rd，&lt;地址&gt;存储字节数据，数据在Rd中，最低字节有效</li>
+</ul>
+<h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><h3 id="存储器重映射"><a href="#存储器重映射" class="headerlink" title="存储器重映射"></a>存储器重映射</h3><ul>
+<li>存储器映射：为物理存储器分配地址的过程</li>
+<li>存储器重映射：将已经映射的存储器再次映射的过程<ul>
+<li>多个地址指向同一个存储单元</li>
+</ul>
+</li>
+<li>包括<ul>
+<li>Boot Block</li>
+<li>异常向量表的少量存储单元</li>
+</ul>
+</li>
+<li>（引导块）Boot Block<ul>
+<li>系统固化的代码，用户无法删除和修改</li>
+<li>功能<ul>
+<li>判断运行哪个存储器上的程序</li>
+<li>检查用户代码是否加密</li>
+<li>判断芯片是否加密</li>
+<li>芯片的在应用编程（IAP）以及系统编程功能（ISP）</li>
+</ul>
+</li>
+<li>芯片复位后首先运行</li>
+<li>和启动代码区分开来<ul>
+<li>启动代码是用户添加的，Boot Block是系统固化的 系统复位后先运行引导快，再运行启动代码</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="系统启动代码"><a href="#系统启动代码" class="headerlink" title="系统启动代码"></a>系统启动代码</h3><ul>
+<li>主要和Boot Block 区分开来</li>
+</ul>
+<h3 id="系统控制模块"><a href="#系统控制模块" class="headerlink" title="系统控制模块"></a>系统控制模块</h3><ul>
+<li>部分独立工作不会对其他部件产生影响的功能部件：<ul>
+<li>$UART$接口</li>
+<li>$I^{2}C$接口</li>
+</ul>
+</li>
+</ul>
+<h4 id="系统时钟"><a href="#系统时钟" class="headerlink" title="系统时钟"></a>系统时钟</h4><ul>
+<li><p>晶体振荡器</p>
+<ul>
+<li>为系统提供基本的时钟信号，频率为$F_{OSC}$</li>
+<li>从属模式<ul>
+<li>外部时钟源</li>
+</ul>
+</li>
+<li>振荡模式<ul>
+<li>外部晶体和片内振荡电路</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>唤醒定时器</p>
+<ul>
+<li>当复位或者系统从掉电模式被唤醒的时候，唤醒定时器需要对于输入的时钟信号做计数延迟，使系统有时间初始化</li>
+</ul>
+</li>
+<li><p>锁相环（PLL）</p>
+<ul>
+<li>提高$F<em>{OSC}$信号到$F</em>{CCLK}$ (符合用户工作需要的时钟频率)</li>
+</ul>
+</li>
+<li><p>VPB分频器</p>
+<ul>
+<li>降低$F_{CCLK}$信号到满足外设部件使用</li>
+</ul>
+</li>
+<li><p>工作频率</p>
+<ul>
+<li>LPC2000系列基于ARM7内核，该内核的工作频率在100MHZ以下，大部分支持最高60MHZ的内核时钟，少部分支持70MHZ的内核时钟</li>
+</ul>
+</li>
+<li><p>功率控制</p>
+<ul>
+<li>空闲模式<ul>
+<li>处理器停止执行指令，但是系统时钟仍然有效，外设可以继续工作</li>
+</ul>
+</li>
+<li>掉电模式<ul>
+<li>振荡器关闭，系统内部没有任何内部时钟</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="复位"><a href="#复位" class="headerlink" title="复位"></a>复位</h4><ul>
+<li>外部复位<ul>
+<li>改变引脚RESET为低电平</li>
+</ul>
+</li>
+<li>看门狗复位<ul>
+<li>ARM内嵌看门狗部件</li>
+</ul>
+</li>
+<li>任何复位都会唤醒定时器，计数定时后处理器开始执行指令</li>
+</ul>
+<h3 id="外部存储器控制器（EMC）"><a href="#外部存储器控制器（EMC）" class="headerlink" title="外部存储器控制器（EMC）"></a>外部存储器控制器（EMC）</h3><ul>
+<li>外部静态存储器控制器是AMBA AHB总线上的一个从模块，它为AHB系统总线和外部存储器提供一个接口</li>
+<li>外部存储器控制器包含4个配置寄存器。每个配置寄存器控制一个外部存储器接口的总线空闲时间、读访问长度、写访问长度、存储器组是否写保护、存储器组的总线宽度的设置等</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="http://pic.acist.xn--ses554g/Chevereto-Free-master/images/2020/09/15/202009151744498389223e0b3f1a91.png" alt="fuck"></p>
+<ul>
+<li><p>并行串行区分</p>
+<ul>
+<li>并行：$EMC$</li>
+<li>串行：$I^{2}C;SPI;UART$</li>
+</ul>
+</li>
+<li><p>程序题目</p>
+<ul>
+<li><p>向PSRAM中写入16位数据</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">uint16 *point16;</span><br><span class="line">uint16 data16=<span class="number">0x00</span>;</span><br><span class="line">point16=(uint1 <span class="number">16</span>*)<span class="number">0x80001020</span>;<span class="comment">//初始地址</span></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    *point16=data16++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向PSRAM中低地址写入8位数据</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">uint8 *point8;</span><br><span class="line">uint8 data8=<span class="number">0x00</span>;</span><br><span class="line">point8=(uint8 *)<span class="number">0x80001020</span>;<span class="comment">//初始地址</span></span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    *point8=data8++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向PSRAM中高地址写入8位数据</p>
+<ul>
+<li>类比同上</li>
+<li>8位写操作，两者在控制的时候是通过BLS0、BLS1的交替生效而成功的</li>
+<li>16位BLS0、BLS1同时生效</li>
+</ul>
+</li>
+<li><p>向PSRAM中读取8位数据</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">uint8 RcvData8;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    uint8 *point8;</span><br><span class="line">    point8 = (uint *) <span class="number">0x80001010</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)<span class="comment">//循环读取0x80001010--0x80001013</span></span><br><span class="line">    &#123;</span><br><span class="line">        RcvData8 = *point8++;<span class="comment">// 读取0x80001010</span></span><br><span class="line">        RcvData8 = *point8++;<span class="comment">// 读取0x80001011</span></span><br><span class="line">        RcvData8 = *point8++;<span class="comment">// 读取0x80001012</span></span><br><span class="line">        RcvData8 = *point8--;<span class="comment">// 读取0x80001013</span></span><br><span class="line">        *point8--;</span><br><span class="line">        *point8--;</span><br><span class="line">        *point8--;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="引脚连接模块"><a href="#引脚连接模块" class="headerlink" title="引脚连接模块"></a>引脚连接模块</h3><h4 id="GPIO"><a href="#GPIO" class="headerlink" title="GPIO"></a>GPIO</h4><p><img src= "/img/loading.gif" data-lazy-src="http://pic.acist.xn--ses554g/Chevereto-Free-master/images/2020/09/15/202009151744498389223e0b3f1a91.png" alt="image-20200912215329354"></p>
+<ul>
+<li>IOxDIR 控制方向（In or Out）</li>
+<li>IOxSET 控制高电平输出</li>
+<li>IOxCLR 控制低电平输出</li>
+<li>IOxPIN 反应引脚当前电平状态</li>
+</ul>
+<h4 id="GPIO应用示例"><a href="#GPIO应用示例" class="headerlink" title="GPIO应用示例"></a>GPIO应用示例</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PINSEL0 &amp;= <span class="number">0xFFFFFFFC</span>; <span class="comment">// 设置引脚连接模块，将P0.0设置为GPIO功能</span></span><br><span class="line">IOxDIR  |= <span class="number">0x00000001</span>; <span class="comment">// 设置P0.0为输出</span></span><br><span class="line">IOxSET = <span class="number">0x00000001</span>;   <span class="comment">// 设置P0.0为高电平</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在PINSEL0中每两位二进制对应一个P0.x</li>
+<li>而对于其他的，例如IOxDIR、IOxSET 每一位二进制对于一个P0.x;</li>
+</ul>
+<h2 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h2><h3 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h3><ul>
+<li>在实时多任务系统中，信号量被广泛用于任务间对共享资源的互斥、任务和中断服务程序的同步以及任务的同步。</li>
+</ul>
+<h3 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h3><ul>
+<li>消息是任务之间的一种通信手段，当同步过程需要传输具体内容的时候就不能使用信号量，这个时候可以选择消息邮箱，即通过内核服务可以给任务发送消息。</li>
+</ul>
+<h3 id="邮箱"><a href="#邮箱" class="headerlink" title="邮箱"></a>邮箱</h3><ul>
+<li>邮箱用来在任务之间或者中断与任务之间传递一个指针，以便任务可以通过指针发送和接收任意类型的数据。</li>
+</ul>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><ul>
+<li>消息队列就像一个类似于缓冲区的对象，通过消息队列和ISR发送和接收消息，实现数据的通信和同步。</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">ACist</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://achttp.github.io/2020/09/15/xue-ke-fu-xi/qian-ru-shi-fu-xi/">https://achttp.github.io/2020/09/15/xue-ke-fu-xi/qian-ru-shi-fu-xi/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://AChttp.github.io" target="_blank">用技术点亮生活</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E5%86%8C/">大二下册</a><a class="post-meta__tags" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/08/12/codeforces/codeforcesround-664-div1/"><img class="next-cover" data-lazy-src="http://pic.acist.xn--ses554g/images/2020/08/07/024e6f8b1746d25528022dbfea9d5105.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CodeforcesRound#664(Div.1)</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By ACist</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png"/><span>湘ICP备20012534号</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  var script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    window.valine = new Valine({
+      el: '#vcomment',
+      appId: 'ROXlWSosiX446x3p0QTe72F6-gzGzoHsz',
+      appKey: 'qn0ane7kIplblDvtsH9i3jGA',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    });
+    if ('nick,mail') { valine.config.requiredFields= 'nick,mail'.split(',') }
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
