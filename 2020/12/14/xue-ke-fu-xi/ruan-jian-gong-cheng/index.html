@@ -1,0 +1,394 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>用技术点亮生活 | 用技术点亮生活</title><meta name="description" content="软件工程第一章软件危机 软件危机：软件开发周期长、成本高、质量差、维护困难 原因：除去本身特点和开发者有关  软件生存期 定义 问题定义 可行性研究 需求分析   开发 概要设计 详细设计 编码 测试   维护  软件工程方法学 三要素：过程、方法、工具 根基：质量关注点 分类 传统方法学（结构化方法学） 顺序：自顶向下 要么面向数据，要么面向行为，缺乏两者有机结合的机制   面向对象方法学 数据"><meta name="author" content="ACist"><meta name="copyright" content="ACist"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://achttp.github.io/2020/12/14/xue-ke-fu-xi/ruan-jian-gong-cheng/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="用技术点亮生活"><meta property="og:url" content="https://achttp.github.io/2020/12/14/xue-ke-fu-xi/ruan-jian-gong-cheng/"><meta property="og:site_name" content="用技术点亮生活"><meta property="og:description" content="软件工程第一章软件危机 软件危机：软件开发周期长、成本高、质量差、维护困难 原因：除去本身特点和开发者有关  软件生存期 定义 问题定义 可行性研究 需求分析   开发 概要设计 详细设计 编码 测试   维护  软件工程方法学 三要素：过程、方法、工具 根基：质量关注点 分类 传统方法学（结构化方法学） 顺序：自顶向下 要么面向数据，要么面向行为，缺乏两者有机结合的机制   面向对象方法学 数据"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2020-12-14T02:26:33.056Z"><meta property="article:modified_time" content="2020-12-08T12:41:48.156Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-12-08 20:41:48'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.3.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">8</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">软件工程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-number">1.1.</span> <span class="toc-text">第一章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%8D%B1%E6%9C%BA"><span class="toc-number">1.1.1.</span> <span class="toc-text">软件危机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%AD%98%E6%9C%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">软件生存期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%96%B9%E6%B3%95%E5%AD%A6"><span class="toc-number">1.1.3.</span> <span class="toc-text">软件工程方法学</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%9B%AE%E6%A0%87"><span class="toc-number">1.1.4.</span> <span class="toc-text">软件工程目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9A"><span class="toc-number">1.1.5.</span> <span class="toc-text">题目：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="toc-number">1.2.</span> <span class="toc-text">第二章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%AD%98%E6%9C%9F%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">软件生存期模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%80%91%E5%B8%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">瀑布模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#V%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">V模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text">快速原型模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">原型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-1"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.4.</span> <span class="toc-text">增量模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-2"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-2"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E7%BB%84%E4%BB%B6%E5%BC%80%E5%8F%91"><span class="toc-number">1.2.4.3.</span> <span class="toc-text">增量组件开发</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%9E%BA%E6%97%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.5.</span> <span class="toc-text">螺旋模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%96%B7%E6%B3%89%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.6.</span> <span class="toc-text">喷泉模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.7.</span> <span class="toc-text">统一过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.8.</span> <span class="toc-text">基于组件的开发模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%8D%B7%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.9.</span> <span class="toc-text">敏捷过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9ADCACD-BCBAB"><span class="toc-number">1.2.10.</span> <span class="toc-text">题目：DCACD BCBAB</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0"><span class="toc-number">1.3.</span> <span class="toc-text">第三章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82"><span class="toc-number">1.3.1.</span> <span class="toc-text">软件需求</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">需求工程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89%E4%B8%AA%E5%85%B3%E9%94%AE"><span class="toc-number">1.3.1.2.1.</span> <span class="toc-text">三个关键</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E9%9C%80%E6%B1%82"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">业务需求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E8%A1%8C%E6%80%A7%E7%A0%94%E7%A9%B6"><span class="toc-number">1.3.1.4.</span> <span class="toc-text">可行性研究</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E4%B8%AA%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.3.1.5.</span> <span class="toc-text">四个步骤</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.2.</span> <span class="toc-text">结构化分析方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">功能建模</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">数据建模</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">行为建模</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8"><span class="toc-number">1.3.2.4.</span> <span class="toc-text">数据字典</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E5%B7%A5%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E"><span class="toc-number">1.3.2.5.</span> <span class="toc-text">加工规格说明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E"><span class="toc-number">1.3.3.</span> <span class="toc-text">系统需求规格说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%EF%BC%88SRS%EF%BC%89"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">软件需求规格说明（SRS）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9C%80%E6%B1%82%E8%AF%B4%E6%98%8E%EF%BC%88DRD%EF%BC%89"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">数据需求说明（DRD）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SRS%E5%92%8CDRD%E7%9A%84%E8%B4%A8%E9%87%8F%E8%A6%81%E6%B1%82"><span class="toc-number">1.3.3.3.</span> <span class="toc-text">SRS和DRD的质量要求</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%AF%84%E5%AE%A1"><span class="toc-number">1.3.4.</span> <span class="toc-text">需求评审</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%84%E5%AE%A1%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">评审项目</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E7%AE%A1%E7%90%86"><span class="toc-number">1.3.5.</span> <span class="toc-text">需求管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83"><span class="toc-number">1.3.6.</span> <span class="toc-text">思考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.3.7.</span> <span class="toc-text">题目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0"><span class="toc-number">1.4.</span> <span class="toc-text">第四章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">1.4.1.</span> <span class="toc-text">软件设计原则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%A6%E5%90%88"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">耦合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E8%81%9A"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">内聚</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E7%8B%AC%E7%AB%8B%E6%80%A7"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">模块独立性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.2.</span> <span class="toc-text">结构化设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.3.</span> <span class="toc-text">软件设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">体系结构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%95%B0%E6%8D%AE%E6%B5%81%E6%96%B9%E6%B3%95%E8%AE%BE%E8%AE%A1%E8%BF%87%E7%A8%8B"><span class="toc-number">1.4.3.1.1.</span> <span class="toc-text">基于数据流方法设计过程</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">接口设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">数据设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.3.4.</span> <span class="toc-text">过程设计</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E"><span class="toc-number">1.4.4.</span> <span class="toc-text">软件设计规格说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E8%AF%84%E5%AE%A1"><span class="toc-number">1.4.5.</span> <span class="toc-text">软件设计评审</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0"><span class="toc-number">1.5.</span> <span class="toc-text">第五章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80"><span class="toc-number">1.5.1.</span> <span class="toc-text">程序设计语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E9%A3%8E%E6%A0%BC"><span class="toc-number">1.5.2.</span> <span class="toc-text">程序设计风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83"><span class="toc-number">1.5.3.</span> <span class="toc-text">编码规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%95%88%E7%8E%87%E4%B8%8E%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-number">1.5.4.</span> <span class="toc-text">程序效率与性能分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0"><span class="toc-number">1.6.</span> <span class="toc-text">第六章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.6.1.</span> <span class="toc-text"> </span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">用技术点亮生活</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">无题</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-14T02:26:33.056Z" title="发表于 2020-12-14 10:26:33">2020-12-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-12-08T12:41:48.156Z" title="更新于 2020-12-08 20:41:48">2020-12-08</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="软件工程"><a href="#软件工程" class="headerlink" title="软件工程"></a>软件工程</h1><h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h3 id="软件危机"><a href="#软件危机" class="headerlink" title="软件危机"></a>软件危机</h3><ul>
+<li>软件危机：软件开发周期长、成本高、质量差、维护困难</li>
+<li>原因：除去本身特点和开发者有关</li>
+</ul>
+<h3 id="软件生存期"><a href="#软件生存期" class="headerlink" title="软件生存期"></a>软件生存期</h3><ul>
+<li>定义<ul>
+<li>问题定义</li>
+<li>可行性研究</li>
+<li>需求分析</li>
+</ul>
+</li>
+<li>开发<ul>
+<li>概要设计</li>
+<li>详细设计</li>
+<li>编码</li>
+<li>测试</li>
+</ul>
+</li>
+<li>维护</li>
+</ul>
+<h3 id="软件工程方法学"><a href="#软件工程方法学" class="headerlink" title="软件工程方法学"></a>软件工程方法学</h3><ul>
+<li>三要素：过程、方法、工具</li>
+<li>根基：质量关注点</li>
+<li>分类<ul>
+<li>传统方法学（结构化方法学）<ul>
+<li>顺序：自顶向下</li>
+<li>要么面向数据，要么面向行为，缺乏两者有机结合的机制</li>
+</ul>
+</li>
+<li>面向对象方法学<ul>
+<li>数据和数据操作紧密结合</li>
+</ul>
+</li>
+<li>形式化方法学</li>
+</ul>
+</li>
+</ul>
+<h3 id="软件工程目标"><a href="#软件工程目标" class="headerlink" title="软件工程目标"></a>软件工程目标</h3><ul>
+<li>运用先进的软件开发技术、管理方法来提高软件的质量、生产率，短周期、低成本开发高质量软件产品，实现软件的工业化生产。</li>
+</ul>
+<h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><p>ABACB</p>
+<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><h3 id="软件生存期模型"><a href="#软件生存期模型" class="headerlink" title="软件生存期模型"></a>软件生存期模型</h3><h3 id="瀑布模型"><a href="#瀑布模型" class="headerlink" title="瀑布模型"></a>瀑布模型</h3><ul>
+<li>阶段间具有顺序性、依赖性</li>
+<li>推迟实现的观点<ul>
+<li>尽可能推迟软件的物理实现</li>
+</ul>
+</li>
+<li>质量保证的观点<ul>
+<li>每个阶段完成规定文档、对完成文档需要评审</li>
+</ul>
+</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208100545018.png" alt="image-20201208100545018"></p>
+<h4 id="V模型"><a href="#V模型" class="headerlink" title="V模型"></a>V模型</h4><ul>
+<li>是软件模型的变体</li>
+<li>V模型右侧的步骤向上推进工作，实际上执行了一系列测试</li>
+<li><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208100743869.png" alt="image-20201208100743869"></li>
+</ul>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>规范化方法</li>
+<li>严格规定每个阶段需要提交的文档</li>
+<li>产品必须经过验证</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>只适用于项目开始是需求已经确定</li>
+</ul>
+<h3 id="快速原型模型"><a href="#快速原型模型" class="headerlink" title="快速原型模型"></a>快速原型模型</h3><ul>
+<li>快速建立可以运行的程序、通常是完成功能的一个子集</li>
+</ul>
+<h4 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h4><ul>
+<li>原型的用途是获取和验证用户的真正需求、确定之后可以抛弃</li>
+</ul>
+<h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>满足用户真正的需求</li>
+<li>因为已经通过原型验证，规格说明文档能够正确描述用户需求</li>
+<li>线性顺序开发</li>
+<li>因为规格说明文档正确地描述了用户需求，因而不会因为规格说明文档错误而进行较大的返工</li>
+</ul>
+<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>时间仓促<ul>
+<li>工具、技术不主流</li>
+<li>产品质量低下</li>
+<li>原型影响开发人员创新</li>
+</ul>
+</li>
+</ul>
+<h3 id="增量模型"><a href="#增量模型" class="headerlink" title="增量模型"></a>增量模型</h3><ul>
+<li><p>别称：渐增模型</p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208111922340.png" alt="image-20201208111922340"></p>
+</li>
+</ul>
+<h4 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>短交付</li>
+<li>逐步增加，用户、生产都时间充裕</li>
+<li>项目失败风险低</li>
+<li>高优先级，高交付</li>
+</ul>
+<h4 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h4><h4 id="增量组件开发"><a href="#增量组件开发" class="headerlink" title="增量组件开发"></a>增量组件开发</h4><ul>
+<li>每个组件采用瀑布流模型的方式</li>
+<li><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208112247513.png" alt="image-20201208112247513"></li>
+</ul>
+<h3 id="螺旋模型"><a href="#螺旋模型" class="headerlink" title="螺旋模型"></a>螺旋模型</h3><ul>
+<li>结合瀑布模型+快速原型模型+前两者忽略的风险分析</li>
+<li>基本思想：使用原型以及其他方法来降低风险</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208112444863.png" alt="image-20201208112444863"></p>
+<ul>
+<li>每个循环表示一个阶段</li>
+</ul>
+<h3 id="喷泉模型"><a href="#喷泉模型" class="headerlink" title="喷泉模型"></a>喷泉模型</h3><ul>
+<li><p>典型面向对象生命周期模型</p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208112749207.png" alt="image-20201208112749207"></p>
+</li>
+</ul>
+<h3 id="统一过程"><a href="#统一过程" class="headerlink" title="统一过程"></a>统一过程</h3><ul>
+<li>初始阶段</li>
+<li>细化阶段</li>
+<li>构造阶段</li>
+<li>移交阶段</li>
+<li>九个核心工作流</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208112922126.png" alt="image-20201208112922126"></p>
+<h3 id="基于组件的开发模型"><a href="#基于组件的开发模型" class="headerlink" title="基于组件的开发模型"></a>基于组件的开发模型</h3><h3 id="敏捷过程"><a href="#敏捷过程" class="headerlink" title="敏捷过程"></a>敏捷过程</h3><p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208113132744.png" alt="image-20201208113132744"></p>
+<h3 id="题目：DCACD-BCBAB"><a href="#题目：DCACD-BCBAB" class="headerlink" title="题目：DCACD BCBAB"></a>题目：DCACD BCBAB</h3><h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><h3 id="软件需求"><a href="#软件需求" class="headerlink" title="软件需求"></a>软件需求</h3><ul>
+<li>用户角度：系统应该提供的服务</li>
+<li>软件系统角度：系统功能的详细和正式的定义</li>
+</ul>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ul>
+<li>功能性需求：系统提供的服务或者功能</li>
+<li>非功能性需求：对系统提供的服务或者功能的约束</li>
+</ul>
+<h4 id="需求工程"><a href="#需求工程" class="headerlink" title="需求工程"></a>需求工程</h4><h5 id="三个关键"><a href="#三个关键" class="headerlink" title="三个关键"></a>三个关键</h5><ul>
+<li>获取和分析</li>
+<li>规格说明：需求转换为标准格式</li>
+<li>确认</li>
+</ul>
+<h4 id="业务需求"><a href="#业务需求" class="headerlink" title="业务需求"></a>业务需求</h4><h4 id="可行性研究"><a href="#可行性研究" class="headerlink" title="可行性研究"></a>可行性研究</h4><h4 id="四个步骤"><a href="#四个步骤" class="headerlink" title="四个步骤"></a>四个步骤</h4><ul>
+<li>获取需求</li>
+<li>分析需求</li>
+<li>定义需求</li>
+<li>验证需求</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208114535173.png" alt="image-20201208114535173"></p>
+<h3 id="结构化分析方法"><a href="#结构化分析方法" class="headerlink" title="结构化分析方法"></a>结构化分析方法</h3><ul>
+<li>数据字典</li>
+<li>实体关系图</li>
+<li>数据流图</li>
+<li>状态迁移图</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208191045501.png" alt="image-20201208191045501"></p>
+<h4 id="功能建模"><a href="#功能建模" class="headerlink" title="功能建模"></a>功能建模</h4><ul>
+<li>自顶向下</li>
+<li>环境图</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208191443709.png" alt="image-20201208191443709"></p>
+<h4 id="数据建模"><a href="#数据建模" class="headerlink" title="数据建模"></a>数据建模</h4><ul>
+<li><p>ER图</p>
+<ul>
+<li><p>属性（椭圆、圆角）</p>
+</li>
+<li><p>关系（无向边、两端标识关联的数量）</p>
+<p><img src= "/img/loading.gif" data-lazy-src="file:///C:\Users\14816\AppData\Roaming\Tencent\Users\1481632287\QQ\WinTemp\RichOle\FG5{3WFP`9`GTF4K7@`[_FI.png" alt="img"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="行为建模"><a href="#行为建模" class="headerlink" title="行为建模"></a>行为建模</h4><ul>
+<li>状态连线由带箭头的线构成，称为状态迁移</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208192454175.png" alt="image-20201208192454175"></p>
+<h4 id="数据字典"><a href="#数据字典" class="headerlink" title="数据字典"></a>数据字典</h4><ul>
+<li>以词条方式定义在数据模型、功能模型和行为模型中</li>
+<li>三种分析模型的粘合剂</li>
+</ul>
+<h4 id="加工规格说明"><a href="#加工规格说明" class="headerlink" title="加工规格说明"></a>加工规格说明</h4><ul>
+<li>数据流图的每一个基本加工，必须有一个加工规格说明</li>
+<li>决策表</li>
+</ul>
+<h3 id="系统需求规格说明"><a href="#系统需求规格说明" class="headerlink" title="系统需求规格说明"></a>系统需求规格说明</h3><h4 id="软件需求规格说明（SRS）"><a href="#软件需求规格说明（SRS）" class="headerlink" title="软件需求规格说明（SRS）"></a>软件需求规格说明（SRS）</h4><h4 id="数据需求说明（DRD）"><a href="#数据需求说明（DRD）" class="headerlink" title="数据需求说明（DRD）"></a>数据需求说明（DRD）</h4><h4 id="SRS和DRD的质量要求"><a href="#SRS和DRD的质量要求" class="headerlink" title="SRS和DRD的质量要求"></a>SRS和DRD的质量要求</h4><ul>
+<li><p>完整性</p>
+</li>
+<li><p>可验证性</p>
+</li>
+<li><p>一致性</p>
+</li>
+<li><p>可理解性</p>
+</li>
+<li><p>可修改性</p>
+</li>
+<li><p>可追踪性</p>
+</li>
+</ul>
+<h3 id="需求评审"><a href="#需求评审" class="headerlink" title="需求评审"></a>需求评审</h3><ul>
+<li>实践中不可能用户和系统需求清晰、无歧义、易于理解、完整和一致</li>
+</ul>
+<h4 id="评审项目"><a href="#评审项目" class="headerlink" title="评审项目"></a>评审项目</h4><ul>
+<li>功能、性能、接口、数据、硬件、软件、通信</li>
+<li>正确性、完整性、可行性、一致性、兼容性、安全性、健壮性、可理解性</li>
+</ul>
+<h3 id="需求管理"><a href="#需求管理" class="headerlink" title="需求管理"></a>需求管理</h3><h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><ul>
+<li>顶层数据流图也就是环境图的作用<ul>
+<li>确定系统在环境中的位置</li>
+<li>通过确定系统的输入输出以及与外部实体的关系确定系统的边界</li>
+</ul>
+</li>
+<li>数据流图进行分解需要注意的问题<ul>
+<li>对数据流图分层细化的时候必须保证信息的连续性，也就是说经过一系列分解之后，分解前和分解后的输入、输出数据流必须相同</li>
+<li>注意分层细化的时候对于编号的处理方法</li>
+</ul>
+</li>
+</ul>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><h3 id="软件设计原则"><a href="#软件设计原则" class="headerlink" title="软件设计原则"></a>软件设计原则</h3><p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208201603411.png" alt="image-20201208201603411"></p>
+<h4 id="耦合"><a href="#耦合" class="headerlink" title="耦合"></a>耦合</h4><ul>
+<li><p>模块间紧密程度的度量</p>
+</li>
+<li><p>非直接耦合：两个模块没有直接关系，通过主控制和调用实现</p>
+</li>
+<li><p>数据耦合：一个模块访问另外一个是通过简单的数据参数而不是控制参数、公共数据结构</p>
+</li>
+<li><p>特征耦合：一组模块通过参数表传递记录信息，记录的是某一数据结构的子结构</p>
+</li>
+<li><p>控制耦合：一个模块通过传送开关、标志、名字等控制信息能够明显控制选择控制另一模块的功能</p>
+</li>
+<li><p>公共耦合：一组模块访问同一个公共的数据环境，例如全局数据结构、共享的通信区</p>
+</li>
+<li><p>内容耦合：</p>
+<ul>
+<li>一个模块直接访问另外一个模块的内部数据</li>
+<li>模块不通过正常入口转到另一模块内部</li>
+<li>两个模块有一部分代码重迭</li>
+<li>一个程序由多个入口</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208202207479.png" alt="image-20201208202207479"></p>
+</li>
+</ul>
+<h4 id="内聚"><a href="#内聚" class="headerlink" title="内聚"></a>内聚</h4><ul>
+<li><p>模块内部功能强度的度量</p>
+</li>
+<li><p>模块内聚</p>
+</li>
+<li><p>偶然内聚</p>
+</li>
+<li><p>逻辑内聚</p>
+</li>
+<li><p>时间内聚</p>
+</li>
+<li><p>过程内聚</p>
+</li>
+<li><p>通信内聚</p>
+</li>
+<li><p>顺序内聚</p>
+</li>
+<li><p>功能内聚</p>
+</li>
+</ul>
+<h4 id="模块独立性"><a href="#模块独立性" class="headerlink" title="模块独立性"></a>模块独立性</h4><ul>
+<li>强的应该是高内聚低耦合</li>
+</ul>
+<h3 id="结构化设计"><a href="#结构化设计" class="headerlink" title="结构化设计"></a>结构化设计</h3><p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208203941566.png" alt="image-20201208203941566"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208204003163.png" alt="image-20201208204003163"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="C:%5CUsers%5C14816%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201208204030067.png" alt="image-20201208204030067"></p>
+<h3 id="软件设计"><a href="#软件设计" class="headerlink" title="软件设计"></a>软件设计</h3><h4 id="体系结构设计"><a href="#体系结构设计" class="headerlink" title="体系结构设计"></a>体系结构设计</h4><h5 id="基于数据流方法设计过程"><a href="#基于数据流方法设计过程" class="headerlink" title="基于数据流方法设计过程"></a>基于数据流方法设计过程</h5><h4 id="接口设计"><a href="#接口设计" class="headerlink" title="接口设计"></a>接口设计</h4><h4 id="数据设计"><a href="#数据设计" class="headerlink" title="数据设计"></a>数据设计</h4><h4 id="过程设计"><a href="#过程设计" class="headerlink" title="过程设计"></a>过程设计</h4><h3 id="软件设计规格说明"><a href="#软件设计规格说明" class="headerlink" title="软件设计规格说明"></a>软件设计规格说明</h3><h3 id="软件设计评审"><a href="#软件设计评审" class="headerlink" title="软件设计评审"></a>软件设计评审</h3><h2 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h2><h3 id="程序设计语言"><a href="#程序设计语言" class="headerlink" title="程序设计语言"></a>程序设计语言</h3><h3 id="程序设计风格"><a href="#程序设计风格" class="headerlink" title="程序设计风格"></a>程序设计风格</h3><h3 id="编码规范"><a href="#编码规范" class="headerlink" title="编码规范"></a>编码规范</h3><h3 id="程序效率与性能分析"><a href="#程序效率与性能分析" class="headerlink" title="程序效率与性能分析"></a>程序效率与性能分析</h3><h2 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h2><h3 id=""><a href="#" class="headerlink" title=" "></a> </h3></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">ACist</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://achttp.github.io/2020/12/14/xue-ke-fu-xi/ruan-jian-gong-cheng/">https://achttp.github.io/2020/12/14/xue-ke-fu-xi/ruan-jian-gong-cheng/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://AChttp.github.io" target="_blank">用技术点亮生活</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/12/14/xue-ke-fu-xi/wang-luo-gong-cheng-yu-guan-li-fu-xi/"><img class="next-cover" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By ACist</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png"/><span>湘ICP备20012534号</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    window.valine = new Valine({
+      el: '#vcomment',
+      appId: 'ROXlWSosiX446x3p0QTe72F6-gzGzoHsz',
+      appKey: 'qn0ane7kIplblDvtsH9i3jGA',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    });
+    if ('nick,mail') { valine.config.requiredFields= 'nick,mail'.split(',') }
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
